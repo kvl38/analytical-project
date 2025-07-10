@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/548876233044174289/b9e8ef45de69459ca6ba6001bb7f1bc2/artifacts
+end_time: 1752075596159
+entry_point_name: ''
+experiment_id: '548876233044174289'
+lifecycle_stage: active
+run_id: b9e8ef45de69459ca6ba6001bb7f1bc2
+run_name: CatBoost_Classification_3
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1752075584781
+status: 3
+tags: []
+user_id: kvl38
