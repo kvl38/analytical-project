@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Телеком Предсказание</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 20px auto;
+            background: #f7f9fc;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #004d99;
+        }
+        form {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px 20px;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        select, input[type="number"], input[type="date"] {
+            width: 100%;
+            padding: 6px 10px;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .buttons {
+            grid-column: 1 / -1;
+            text-align: center;
+            margin-top: 15px;
+        }
+        button {
+            cursor: pointer;
+            background-color: #007acc;
+            border: none;
+            color: white;
+            padding: 10px 22px;
+            margin: 0 10px;
+            font-size: 1rem;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #005fa3;
+        }
+        #result {
+            margin-top: 25px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #006600;
+            text-align: center;
+            background: #e6ffe6;
+            padding: 12px;
+            border-radius: 6px;
+            min-height: 40px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Предсказание оттока абонента</h1>
+
+<form id="predict-form">
+    <div>
+        <label for="begin_date">Дата начала договора</label>
+        <input type="date" id="begin_date" name="begin_date" required />
+    </div>
+
+    <div>
+        <label for="type">Тип контракта</label>
+        <select id="type" name="type" required>
+            <option value="Month-to-month">Month-to-month</option>
+            <option value="One year">One year</option>
+            <option value="Two year">Two year</option>
+        </select>
+    </div>
+
+    <div>
+        <label for="paperless_billing">Электронный расчётный лист</label>
+        <select id="paperless_billing" name="paperless_billing" required>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+    </div>
+
+    <div>
+        <label for="payment_method">Метод оплаты</label>
+        <select id="payment_method" name="payment_method" required>
+            <option value="Electronic check">Electronic check</option>
+            <option value="Mailed check">Mailed check</option>
+            <option value="Bank transfer (automatic)">Bank transfer (automatic)</option>
+            <option value="Credit card (automatic)">Credit card (automatic)</option>
+        </select>
+    </div>
+
+    <div>
+        <label for="monthly_charges">Ежемесячная плата</label>
+        <input type="number" id="monthly_charges" name="monthly_charges" min="0" step="0.01" required />
+    </div>
+
+    <div>
+        <label for="gender">Пол</label>
+        <select id="gender" name="gender" required>
+            <option value="Female">Female</option>
+            <option value="Male">Male</option>
+        </select>
+    </div>
+
+    <div>
+        <label for="senior_citizen">Пожилой человек</label>
+        <select id="senior_citizen" name="senior_citizen" required>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+    </div>
+
+    <div>
+        <label for="partner">Наличие партнёра</label>
+        <select id="partner" name="partner" required>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+    </div>
+
+    <div>
+        <label for="dependents">Зависимые лица</label>
+        <select id="dependents" name="dependents" required>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+    </div>
+
+    <div>
+        <label for="internet_service">Тип подключения</label>
+        <select id="internet_service" name="internet_service" required>
+            <option value="DSL">DSL</option>
+            <option value="Fiber optic">Fiber optic</option>
+            <option value="not_in_use">No</option>
+        </select>
+    </div>
+
+    <div>
+        <label for="online_security">Блокировка сайтов</label>
+        <select id="online_security" name="online_security" required>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+    </div>
+
+    <div>
+        <label for="online_backup">Облачное хранилище</label>
+        <select id="online_backup" name="online_backup" required>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+    </div>
+
+    <div>
+        <label for="device_protection">Антивирус</label>
+        <select id="device_protection" name="device_protection" required>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+    </div>
+
+    <div>
+        <label for="tech_support">Техническая поддержка</label>
+        <select id="tech_support" name="tech_support" required>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+    </div>
+
+    <div>
+        <label for="streaming_tv">Стриминг ТВ</label>
+        <select id="streaming_tv" name="streaming_tv" required>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+    </div>
+
+    <div>
+        <label for="streaming_movies">Каталог фильмов</label>
+        <select id="streaming_movies" name="streaming_movies" required>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+    </div>
+
+    <div>
+        <label for="multiple_lines">Телефония</label>
+        <select id="multiple_lines" name="multiple_lines" required>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+            <option value="not_in_use">No phone service</option>
+        </select>
+    </div>
+
+    <div class="buttons">
+        <button type="button" id="random-btn">Random</button>
+        <button type="submit" id="predict-btn">Predict</button>
+    </div>
+</form>
+
+<div id="result"></div>
+
+<script>
+    const form = document.getElementById('predict-form');
+    const resultDiv = document.getElementById('result');
+    const randomBtn = document.getElementById('random-btn');
+
+    const randomOptions = {
+        begin_date: () => {
+        const end = new Date('2020-02-01');
+        const start = new Date(end);
+        start.setFullYear(end.getFullYear() - 5);
+        const randomTime = start.getTime() + Math.random() * (end.getTime() - start.getTime());
+        const d = new Date(randomTime);
+        return d.toISOString().split('T')[0];
+        },
+
+        type: ['Month-to-month', 'One year', 'Two year'],
+        paperless_billing: ['Yes', 'No'],
+        payment_method: ['Electronic check', 'Mailed check', 'Bank transfer (automatic)', 'Credit card (automatic)'],
+        monthly_charges: () => (Math.random() * 120).toFixed(2),
+        gender: ['Female', 'Male'],
+        senior_citizen: ['Yes', 'No'],
+        partner: ['Yes', 'No'],
+        dependents: ['Yes', 'No'],
+        internet_service: ['DSL', 'Fiber optic', 'not_in_use'],
+        online_security: ['Yes', 'No'],
+        online_backup: ['Yes', 'No'],
+        device_protection: ['Yes', 'No'],
+        tech_support: ['Yes', 'No'],
+        streaming_tv: ['Yes', 'No'],
+        streaming_movies: ['Yes', 'No'],
+        multiple_lines: ['Yes', 'No', 'not_in_use'],
+    };
+
+    randomBtn.onclick = () => {
+        for (const [key, value] of Object.entries(randomOptions)) {
+            let val;
+            if (typeof value === 'function') {
+                val = value();
+            } else {
+                val = value[Math.floor(Math.random() * value.length)];
+            }
+            const el = form.elements.namedItem(key);
+            if (el) el.value = val;
+        }
+        resultDiv.textContent = '';
+    };
+
+    form.onsubmit = async (e) => {
+        e.preventDefault();
+        resultDiv.textContent = "Загрузка...";
+
+        const data = {};
+        for (const el of form.elements) {
+            if (el.name) {
+                if (el.type === "number") {
+                    data[el.name] = parseFloat(el.value);
+                } else {
+                    data[el.name] = el.value;
+                }
+            }
+        }
+
+        try {
+            const response = await fetch('/predict', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+            if (!response.ok) {
+                throw new Error(`Ошибка: ${response.statusText}`);
+            }
+            const result = await response.json();
+            resultDiv.textContent = `Предсказание: ${result.prediction}`;
+        } catch (err) {
+            resultDiv.textContent = `Ошибка: ${err.message}`;
+        }
+    };
+</script>
+
+</body>
+</html>

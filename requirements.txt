@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+pandas
+numpy
+scikit-learn
+catboost
+mlflow
+psycopg2-binary==2.9.10
